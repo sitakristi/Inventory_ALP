@@ -1,0 +1,186 @@
+/* 1. CSS VARIABLES UNTUK TEMA TERANG (DEFAULT) & GELAP */
+:root {
+    /* Warna Dasar Layout */
+    --bg-main: #f3f4f6;
+    --bg-sidebar: #ffffff;
+    --bg-card: #ffffff;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --card-shadow: rgba(0, 0, 0, 0.08);
+
+    /* Warna Utama (Biru) */
+    --primary-color: #3b82f6;
+    --primary-hover: #2563eb;
+    --info-bg: #dbeafe;
+    --info-text: #2563eb;
+
+    /* Warna Sukses / Tersedia / Dikembalikan (Hijau) */
+    --success-color: #10b981;
+    --success-hover: #059669;
+    --success-bg: #d1fae5;
+    --success-text: #059669;
+
+    /* Warna Peringatan / Sedang Dipinjam / Pending (Kuning/Oranye) */
+    --warning-color: #f59e0b;
+    --warning-hover: #d97706;
+    --warning-bg: #fef3c7;
+    --warning-text: #d97706;
+
+    /* Warna Bahaya / Rusak / Hapus (Merah) */
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+    --danger-bg: #fee2e2;
+    --danger-border: #fca5a5;
+    --danger-text: #dc2626;
+}
+
+[data-theme="dark"] {
+    /* Warna Dasar Layout Gelap */
+    --bg-main: #111827;
+    --bg-sidebar: #1f2937;
+    --bg-card: #1f2937;
+    --text-main: #f9fafb;
+    --text-muted: #9ca3af;
+    --border-color: #374151;
+    --card-shadow: rgba(0, 0, 0, 0.4);
+
+    /* Warna Latar Status/Alert versi Gelap (Transparan elegan) */
+    --info-bg: rgba(59, 130, 246, 0.2);
+    --info-text: #60a5fa;
+
+    --success-bg: rgba(16, 185, 129, 0.2);
+    --success-text: #34d399;
+
+    --warning-bg: rgba(245, 158, 11, 0.2);
+    --warning-text: #fbbf24;
+
+    --danger-bg: rgba(239, 68, 68, 0.15);
+    --danger-border: rgba(239, 68, 68, 0.4);
+    --danger-text: #f87171;
+}
+
+/* 2. RESET & LAYOUT UTAMA */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+body { 
+    background-color: var(--bg-main); 
+    color: var(--text-main); 
+    display: flex; 
+    height: 100vh; 
+    overflow: hidden; 
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+/* Bagian Sidebar */
+.sidebar { width: 260px; background-color: var(--bg-sidebar); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; transition: transform 0.3s ease, background-color 0.3s, border-color 0.3s; z-index: 50; }
+.logo-area { padding: 20px; font-size: 24px; font-weight: bold; color: var(--primary-color); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-color); }
+.menu-list { list-style: none; padding: 15px 0; overflow-y: auto; flex: 1; }
+.menu-item { padding: 12px 20px; display: flex; align-items: center; gap: 15px; color: var(--text-main); text-decoration: none; font-size: 15px; transition: background 0.2s; cursor: pointer; }
+.menu-item:hover, .menu-item.active { background-color: var(--bg-main); color: var(--primary-color); border-left: 4px solid var(--primary-color); }
+.menu-item i { width: 20px; text-align: center; color: var(--text-muted); }
+.menu-item.active i { color: var(--primary-color); }
+
+/* Container Sisi Kanan */
+.main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+/* Bagian Topbar */
+.topbar { background-color: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; transition: background-color 0.3s, border-color 0.3s; }
+.topbar-left { display: flex; align-items: center; gap: 15px; }
+.menu-toggle { font-size: 20px; cursor: pointer; display: none; color: var(--text-main); }
+.search-bar { background-color: var(--bg-main); border-radius: 8px; padding: 8px 15px; display: flex; align-items: center; gap: 10px; width: 300px; border: 1px solid var(--border-color); }
+.search-bar input { border: none; background: transparent; outline: none; width: 100%; color: var(--text-main); }
+
+.topbar-right { display: flex; align-items: center; gap: 20px; }
+.icon-btn { cursor: pointer; font-size: 18px; color: var(--text-muted); transition: color 0.2s; background: none; border: none; }
+.icon-btn:hover { color: var(--primary-color); }
+.profile-pic { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-color); cursor: pointer; }
+
+/* Area Konten Utama & Tabel Global */
+.content-body { padding: 20px; overflow-y: auto; flex: 1; }
+.table-container { background-color: var(--bg-card); border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px var(--card-shadow); border: 1px solid var(--border-color); transition: background-color 0.3s, border-color 0.3s; }
+.table-title { font-size: 18px; font-weight: bold; margin-bottom: 15px; color: var(--text-main); }
+
+.table-responsive { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 700px; }
+th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
+th { background-color: var(--bg-main); font-weight: 600; color: var(--text-muted); }
+
+
+/* 3. KOMPONEN GLOBAL (BADGE, TOMBOL, FORM) */
+/* Status Badges (Otomatis menyesuaikan Dark/Light Mode) */
+.status-badge, .badge { padding: 5px 10px; border-radius: 50px; font-size: 12px; font-weight: bold; display: inline-block; }
+.status-pending, .bg-warning { background-color: var(--warning-bg); color: var(--warning-text); }
+.status-dipinjam, .bg-info { background-color: var(--info-bg); color: var(--info-text); }
+.status-selesai, .bg-success { background-color: var(--success-bg); color: var(--success-text); }
+.status-rusak, .bg-danger { background-color: var(--danger-bg); color: var(--danger-text); }
+
+/* Tombol Global */
+.btn-primary { background-color: var(--primary-color); color: #ffffff; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background 0.2s; }
+.btn-primary:hover { background-color: var(--primary-hover); }
+
+.btn-danger { background-color: var(--danger-color); color: #ffffff; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background 0.2s; }
+.btn-danger:hover { background-color: var(--danger-hover); }
+
+.btn-secondary { background-color: var(--bg-main); color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background 0.2s; }
+.btn-secondary:hover { background-color: var(--border-color); }
+
+/* 4. FLOATING CART (KATALOG PEMINJAMAN) */
+.floating-cart {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    box-shadow: 0 4px 12px var(--card-shadow);
+    cursor: pointer;
+    z-index: 1000;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.2s;
+}
+
+.floating-cart:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-hover);
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--danger-color);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+/* Responsivitas */
+@media (max-width: 992px) {
+    .search-bar { width: 200px; }
+}
+
+@media (max-width: 768px) {
+    .sidebar { position: absolute; height: 100%; transform: translateX(-100%); box-shadow: 2px 0 5px var(--card-shadow); }
+    .sidebar.open { transform: translateX(0); }
+    .menu-toggle { display: block; }
+    .search-bar { display: none; } 
+}
